@@ -171,17 +171,16 @@ namespace Pokémon
                 Console.Clear();
                 while (invoer != "" && invoer != "yes")
                 {
+                    WriteLine("[Oak] Right...");
+                    WriteLine("      So your name is " + _player.name + "?");
+                    WriteLine("");
                     _player.name = invoer;
                     while (invoer != "yes" && invoer != "no")    // Optie of je zeker weet dat het je player name word
                     {
-                        WriteLine("[Oak] Right...");
-                        WriteLine("      So your name is " + _player.name + "?");
-                        WriteLine("");
                         WriteLine("      Enter 'yes' or 'no'");
                         invoer = Console.ReadLine();
-                        Console.Clear();
-                        break;
                     }
+                    Console.Clear();
                     switch (invoer)    // Gemaakte keuze bepaalt of je verder gaat
                     {
                         case "yes":
@@ -214,8 +213,8 @@ namespace Pokémon
                 {
                     WriteLine("      Enter 'bulbasaur' or 'charmander' or 'squirtle'");
                     invoer = Console.ReadLine();
-                    Console.Clear();
                 }
+                Console.Clear();
                 switch (invoer)
                 {
                     case "bulbasaur":
@@ -239,8 +238,8 @@ namespace Pokémon
                 {
                     WriteLine("      Enter 'yes' or 'no'");
                     invoer = Console.ReadLine();
-                    Console.Clear();
                 }
+                Console.Clear();
                 switch (invoer)
                 {
                     case "yes":
