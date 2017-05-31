@@ -67,6 +67,20 @@ namespace Pokémon
         public player _player = new player();
         public Random r = new Random();
         public string invoer;
+        public string[] Common = new string[] {"Caterpie","Metapod","Weedle","Kakuna","Pidgey","Pidgeotto","Rattata","Spearow","Sandshrew","Nidoran_F",
+            "Nidoran_M","Zubat","Oddish","Gloom","Paras","Venonat","Digglet","Meowth","Psyduck","Mankey","Poliwag","Poliwhirl","Abra","Machop","Bellsprout",
+            "Tentacool","Geodude","Ponyta","Slowpoke","Magnemite","Doduo","Seel","Grimer","Shellder","Gastly", "Drowzee", "Krabby", "Voltorb", "Exeggcute",
+            "Koffing","Tangela","Horsea","Goldeen","Staryu","Magikarp"};
+        public string[] Uncommon = new string[] {"Butterfree","Beedrill","Pidgeot","Raticate","Fearow","Ekans","Arbok","Pikachu","Sandslash","Nidorina",
+            "Nidorino","Clefairy","Clefable","Vulpix","Jigglypuff","Golbat","Vileplume","Parasect","Venomoth","Dugtrio","Persian","Primeape","Growlithe",
+            "Poliwrath","Kadabra","Machoke","Weepinbell","Tentacruel","Graveler","Rapidash","Farfetchd","Dodrio","Dewgong","Muk","Cloyster","Haunter","Onyx",
+            "Hypno","Kingler","Electrode","Cubone","Marowak","Lickitung","Weezing","Rhyhorn","Seadra","Seaking","Starmie","MrMime","Jynx","Electabuzz","Magmar",
+            "Pinsir","Ditto","Dratini"};
+        public string[] Rare = new string[] {"Nidoqueen","Nidoking","Ninetails","Wigglytuff","Golduck","Arcanine","Alakazam","Machamp",
+            "Victreebel","Golem","Slowbro","Magneton","Gengar","Exeggutor","Hitmonlee","Hitmonchan","Rhydon","Chansey","Kangaskhan","Scyter","Tauros",
+            "Gyarados","Dragonair"};
+        public string[] Legendary = new string[] {"Lapras","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops",
+            "Aerodactyl","Snorlax","Dragonite"};
         public enum Types { Normal, Fire, Water, Electric, Grass, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon };
         public enum Pokemon
         {
@@ -78,7 +92,9 @@ namespace Pokémon
             Tentacool, Tentacruel, Geodude, Graveler, Golem, Ponyta, Rapidash, Slowpoke, Slowbro, Magnemite, Magneton, Farfetchd, Doduo, Dodrio, Seel, Dewgong,
             Grimer, Muk, Shellder, Cloyster, Gastly, Haunter, Gengar, Onyx, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor,
             Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Rhyhorn, Rhydon, Chansey, Tangela, Kangaskhan, Horsea, Seadra, Goldeen, Seaking,
-            Staryu, Starme, MrMime, Scyther, Jynx, Electabuzz, Magmar, Pinsir, Tauros, Magicarp, Gyarados, Lapras, Ditto, Eevee, Vaporeon, Jolteon, Flareon,
+
+            Staryu, Starmie, MrMime, Scyther, Jynx, Electabuzz, Magmar, Pinsir, Tauros, Magicarp, Gyarados, Lapras, Ditto, Eevee, Vaporeon, Jolteon, Flareon,
+
             Porygon, Omanyte, Omastar, Kabuto, Kabutops, Aerodactyl, Snorlax, Articuno, Zapdos, Moltres, Dratini, Dragonair, Dragonite, Mewtwo, Mew
         };
 
