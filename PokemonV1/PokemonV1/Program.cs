@@ -182,10 +182,10 @@ namespace Pokémon
                     }
                 }
             }
-            WriteLine("[Oak] Before you go you will need a pokemon of your own.");
+            WriteLine("[Oak] Before you go you will need a Pokémon of your own.");
             Console.ReadLine();
             Console.Clear();
-            WriteLine("[Oak] Since you don't have a pokemon yet I will give you one.");
+            WriteLine("[Oak] Since you don't have a Pokémon yet I will give you one.");
             Console.ReadLine();
             Console.Clear();
             invoer = "";
@@ -198,25 +198,22 @@ namespace Pokémon
                 {
                     WriteLine("      Enter 'bulbasaur' or 'charmander' or 'squirtle'");
                     invoer = Console.ReadLine();
-                    Console.Clear();
                 }
+                Console.Clear();
                 switch (invoer)
                 {
                     case "bulbasaur":
-                        WriteLine("[Oak] Ah, Bulbasaur a Grass and Poison type Pokemon.");
-                        WriteLine("      He looks at you funny.");
+                        WriteLine("[Oak] Bulbasaur, a Grass and Poison type Pokémon.");
                         break;
                     case "charmander":
-                        WriteLine("[Oak] Hmm Charmander, a Fire type Pokemon.");
-                        WriteLine("      He seems to be very confident.");
+                        WriteLine("[Oak] Charmander, a Fire type Pokémon.");
                         break;
                     case "squirtle":
-                        WriteLine("[Oak] Squirtle, a Water type Pokemon.");
-                        WriteLine("      She is a little shy.");
+                        WriteLine("[Oak] Squirtle, a Water type Pokémon.");
                         break;
                 }
                 WriteLine("");
-                WriteLine("      Are you sure that you want to take this pokemon?");
+                WriteLine("      Are you sure that you want to take this Pokémon?");
                 string choice = invoer;
                 invoer = "";
                 while (invoer != "yes" && invoer != "no")
