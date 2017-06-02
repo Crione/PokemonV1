@@ -18,48 +18,57 @@ namespace Pokémon
 
     class player
     {
-        public string name;
-        public int level;
-        public bool gameOver;
+        public string name { get; set; }
+        public int level { get; set; }
+        public bool gameOver { get; set; }
         public List<pokemon> team = new List<pokemon>();
-    }
+}
 
     class trainer
     {
-        public string name;
+        public string name { get; set; }
         public List<pokemon> team = new List<pokemon>();
     }
 
     class pokemon
     {
-        public string name;
-        public int level;
-        public string type1;
-        public string type2;
-        public int totalXp;
-        public int currentXp;
-        public int baseHp;
-        public int totalHp;
-        public int currentHp;
-        public int baseAttack;
-        public int attack;
-        public int baseDefence;
-        public int defence;
-        public int baseSpeed;
-        public int speed;
-        public int baseSpecial;
-        public int special;
-        public List<moves> moves = new List<moves>();
-        public string evolve;
-        public int evolveLevel;
+        public string name { get; set; }
+        public int level { get; set; }
+        public string type1 { get; set; }
+        public string type2 { get; set; }
+        public int totalXp { get; set; }
+        public int currentXp { get; set; }
+        public int baseHp { get; set; }
+        public int totalHp { get; set; }
+        public int currentHp { get; set; }
+        public int baseAttack { get; set; }
+        public int attack { get; set; }
+        public int baseDefence { get; set; }
+        public int defence { get; set; }
+        public int baseSpeed { get; set; }
+        public int speed { get; set; }
+        public int baseSpecial { get; set; }
+        public int special { get; set; }
+        public List<learnset> learnset = new List<learnset>();
+        public List<move> moves = new List<move>();
+        public string evolve { get; set; }
+        public int evolveLevel { get; set; }
     }
 
-    class moves
+    class learnset
     {
-        public string name;
-        public string type;
-        public int damage;
-        public int accuracy;
+        public move move = new move();
+        public int level { get; set; }
+    }
+
+    class move
+    {
+        public string name { get; set; }
+        public string type { get; set; }
+        public int power { get; set; }
+        public int accuracy { get; set; }
+        public int totalPp { get; set; }
+        public int currentPp { get; set; }
     }
 
     class Game
@@ -81,6 +90,8 @@ namespace Pokémon
             "Gyarados","Dragonair"};
         public string[] Legendary = new string[] {"Lapras","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops",
             "Aerodactyl","Snorlax","Dragonite"};
+        public string[] TestPokemon = new string[] {"Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata",
+            "Raticate"};
         public enum Types { Normal, Fire, Water, Electric, Grass, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon };
         public enum Pokemon
         {
@@ -92,11 +103,19 @@ namespace Pokémon
             Tentacool, Tentacruel, Geodude, Graveler, Golem, Ponyta, Rapidash, Slowpoke, Slowbro, Magnemite, Magneton, Farfetchd, Doduo, Dodrio, Seel, Dewgong,
             Grimer, Muk, Shellder, Cloyster, Gastly, Haunter, Gengar, Onyx, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor,
             Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Rhyhorn, Rhydon, Chansey, Tangela, Kangaskhan, Horsea, Seadra, Goldeen, Seaking,
-
             Staryu, Starmie, MrMime, Scyther, Jynx, Electabuzz, Magmar, Pinsir, Tauros, Magicarp, Gyarados, Lapras, Ditto, Eevee, Vaporeon, Jolteon, Flareon,
-
             Porygon, Omanyte, Omastar, Kabuto, Kabutops, Aerodactyl, Snorlax, Articuno, Zapdos, Moltres, Dratini, Dragonair, Dragonite, Mewtwo, Mew
         };
+
+        public move Tackle = new move { name = "Tackle", type = "Normal", power = 35, accuracy = 95, totalPp = 35};
+        public move Growl = new move { name = "Growl", type = "Normal", accuracy = 100, totalPp = 40 };
+        public move Leech_Seed = new move { name = "Leech Seed", type = "Grass", accuracy = 90, totalPp = 10 };
+        public move Vine_Whip = new move { name = "Vine Whip", type = "Grass", power = 35, accuracy = 100, totalPp = 10 };
+        public move Poison_Powder = new move { name = "Poison Powder", type = "Poison", accuracy = 75, totalPp = 35 };
+        public move Razor_Leaf = new move { name = "Razor Leaf", type = "Grass", power = 55, accuracy = 95, totalPp = 25 };
+        public move Growth = new move { name = "Growth", type = "Normal", totalPp = 40 };
+        public move Sleep_Powder = new move { name = "Sleep Powder", type = "Grass", accuracy = 75, totalPp = 15 };
+        public move Solar_Beam = new move { name = "Solar Beam", type = "Grass", power = 120, accuracy = 100, totalPp = 10 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -292,12 +311,45 @@ namespace Pokémon
                     p.baseSpecial = 65;
                     p.evolve = "Ivysaur";
                     p.evolveLevel = 16;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1},
+                        new learnset { move = Growl, level = 1},
+                        new learnset { move = Leech_Seed, level = 7},
+                        new learnset { move = Vine_Whip, level = 13},
+                        new learnset { move = Poison_Powder, level = 20},
+                        new learnset { move = Razor_Leaf, level = 27},
+                        new learnset { move = Growth, level = 34},
+                        new learnset { move = Sleep_Powder, level = 41},
+                        new learnset { move = Solar_Beam, level = 48}
+                    };
+                    break;
+                case "Ivysaur":
+                    p.name = "Ivysaur";
+                    p.type1 = "Grass";
+                    p.type2 = "Poison";
+                    p.baseHp = 60;
+                    p.baseAttack = 62;
+                    p.baseDefence = 63;
+                    p.baseSpeed = 60;
+                    p.baseSpecial = 80;
+                    p.evolve = "Venusaur";
+                    p.evolveLevel = 32;
+                    break;
+                case "Venusaur":
+                    p.name = "Venusaur";
+                    p.type1 = "Grass";
+                    p.type2 = "Poison";
+                    p.baseHp = 80;
+                    p.baseAttack = 82;
+                    p.baseDefence = 83;
+                    p.baseSpeed = 80;
+                    p.baseSpecial = 100;
                     break;
                 case "Charmander":
                     p.name = "Charmander";
                     p.level = 5;
                     p.type1 = "Fire";
-                    p.type2 = "";
                     p.baseHp = 39;
                     p.baseAttack = 52;
                     p.baseDefence = 43;
@@ -306,11 +358,31 @@ namespace Pokémon
                     p.evolve = "Charmeleon";
                     p.evolveLevel = 16;
                     break;
+                case "Charmeleon":
+                    p.name = "Charmeleon";
+                    p.type1 = "Fire";
+                    p.baseHp = 58;
+                    p.baseAttack = 64;
+                    p.baseDefence = 58;
+                    p.baseSpeed = 80;
+                    p.baseSpecial = 65;
+                    p.evolve = "Charizard";
+                    p.evolveLevel = 36;
+                    break;
+                case "Charizard":
+                    p.name = "Charizard";
+                    p.type1 = "Fire";
+                    p.type2 = "Flying";
+                    p.baseHp = 78;
+                    p.baseAttack = 84;
+                    p.baseDefence = 78;
+                    p.baseSpeed = 100;
+                    p.baseSpecial = 85;
+                    break;
                 case "Squirtle":
                     p.name = "Squirtle";
                     p.level = 5;
                     p.type1 = "Water";
-                    p.type2 = "";
                     p.baseHp = 44;
                     p.baseAttack = 48;
                     p.baseDefence = 65;
@@ -318,6 +390,26 @@ namespace Pokémon
                     p.baseSpecial = 50;
                     p.evolve = "Wartortle";
                     p.evolveLevel = 16;
+                    break;
+                case "Wartortle":
+                    p.name = "Wartortle";
+                    p.type1 = "Water";
+                    p.baseHp = 59;
+                    p.baseAttack = 63;
+                    p.baseDefence = 80;
+                    p.baseSpeed = 58;
+                    p.baseSpecial = 65;
+                    p.evolve = "Blastoise";
+                    p.evolveLevel = 36;
+                    break;
+                case "Blastoise":
+                    p.name = "Blastoise";
+                    p.type1 = "Water";
+                    p.baseHp = 79;
+                    p.baseAttack = 83;
+                    p.baseDefence = 100;
+                    p.baseSpeed = 78;
+                    p.baseSpecial = 85;
                     break;
             }
             p.totalHp = (p.baseHp + ((p.baseHp / 50) * p.level));
