@@ -204,10 +204,10 @@ namespace Pokémon
                 Console.Clear();
                 while (invoer != "" && invoer != "yes")
                 {
+                    _player.name = invoer;
                     WriteLine("[Oak] Right...");
                     WriteLine("      So your name is " + _player.name + "?");
                     WriteLine("");
-                    _player.name = invoer;
                     while (invoer != "yes" && invoer != "no")    // Optie of je zeker weet dat het je player name word
                     {
                         WriteLine("      Enter 'yes' or 'no'");
@@ -239,7 +239,7 @@ namespace Pokémon
             invoer = "";
             while (invoer == "")
             {
-                WriteLine("[Oak] Which Pokemon would you like?");
+                WriteLine("[Oak] Which Pokémon would you like?");
                 WriteLine("      Bulbasaur, Charmander or Squirtle?");
                 WriteLine("");
                 while (invoer != "bulbasaur" && invoer != "charmander" && invoer != "squirtle")
