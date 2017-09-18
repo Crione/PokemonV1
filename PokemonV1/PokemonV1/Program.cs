@@ -151,17 +151,61 @@ namespace Pokémon
         {
             _player.level = 1;
             _player.gameOver = false;
-            beginGame();
+            //beginGame();
             while (_player.gameOver == false)
             {
-                int percentage = r.Next(1, 101);
-                if (percentage > 0 && percentage <= 30)                      //30%
+                invoer = Console.ReadLine();
+                switch (invoer)
                 {
-                    trainerBattle();
-                }
-                else if (percentage > 30 && percentage <= 100)              //70%
-                {
-                    pokemonBattle();
+                    case "/generate":
+                        _player.team.Add(getPokemon("Charmander"));
+                        break;
+                    case "/team":
+                        int count;
+                        int t = 1;
+                        Console.WriteLine("0------TEAM------0");
+                        foreach (pokemon p in _player.team)
+                        {
+                            if(t != 1)
+                            {
+                                Console.WriteLine("|----------------|");
+                            }
+                            count = p.name.Count();
+                            Console.Write("|" + p.name);
+                            for(int i = 0; i <= (15 - count) ; i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine("|");
+                            Console.Write("|LEVEL");
+                            count = p.level.ToString().Count();
+                            for (int i = 0; i <= (10 - count); i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine(p.level + "|");
+                            Console.Write("|HP");
+                            count = p.baseHp.ToString().Count() + p.currentHp.ToString().Count() + 1;
+                            for (int i = 0; i <= (13 - count); i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine(p.baseHp + "/" + p.currentHp  + "|");
+                            t++;
+                        }
+                        Console.WriteLine("0----------------0");
+                        break;
+                    case "":
+                        int percentage = r.Next(1, 101);
+                        if (percentage > 100 && percentage <= 100)                      //30%
+                        {
+                            trainerBattle();
+                        }
+                        else if (percentage > 0 && percentage <= 100)              //70%
+                        {
+                            pokemonBattle();
+                        }
+                        break;
                 }
             }
         }
@@ -535,7 +579,8 @@ namespace Pokémon
 
         public void pokemonBattle()
         {
-
+            int count = r.Next(0, TestPokemon.Count());
+            pokemon p = getPokemon(TestPokemon[count]);
         }
 
         public void trainerBattle()
