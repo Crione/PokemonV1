@@ -22,7 +22,7 @@ namespace Pokémon
         public int level { get; set; }
         public bool gameOver { get; set; }
         public List<pokemon> team = new List<pokemon>();
-}
+    }
 
     class trainer
     {
@@ -130,6 +130,10 @@ namespace Pokémon
         public move Withdraw = new move { name = "Withdraw", type = "Water", totalPp = 40 };
         public move Skull_Bash = new move { name = "Skull Bash", type = "Normal", power = 100, accuracy = 100, totalPp = 15 };
         public move Hydro_Pump = new move { name = "Hydro Pump", type = "Water", power = 120, accuracy = 80, totalPp = 5 };
+        public move String_Shot = new move { name = "String Shot", type = "Normal", power = 0, accuracy = 95, totalPp = 40 };
+        public move Bug_Bite = new move { name = "Bug Bite", type = "Bug", power =  }
+        public move Harden = new move { name = "Harden", type = "Normal", accuracy = 100, totalPp = 30 };
+        public move Confusion = new move { name = "Confusion", type = "Psychic", power = 50, accuracy = 100, totalPp = 25 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -327,15 +331,15 @@ namespace Pokémon
                     p.evolveLevel = 16;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Tackle, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Leech_Seed, level = 7},
-                        new learnset { move = Vine_Whip, level = 13},
-                        new learnset { move = Poison_Powder, level = 20},
-                        new learnset { move = Razor_Leaf, level = 27},
-                        new learnset { move = Growth, level = 34},
-                        new learnset { move = Sleep_Powder, level = 41},
-                        new learnset { move = Solar_Beam, level = 48}
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Leech_Seed, level = 7 },
+                        new learnset { move = Vine_Whip, level = 13 },
+                        new learnset { move = Poison_Powder, level = 20 },
+                        new learnset { move = Razor_Leaf, level = 27 },
+                        new learnset { move = Growth, level = 34 },
+                        new learnset { move = Sleep_Powder, level = 41 },
+                        new learnset { move = Solar_Beam, level = 48 }
                     };
                     break;
                 case "Ivysaur":
@@ -352,14 +356,14 @@ namespace Pokémon
                     p.learnset = new List<learnset>
                     {
                         new learnset { move = Tackle, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Leech_Seed, level = 7},
-                        new learnset { move = Vine_Whip, level = 13},
-                        new learnset { move = Poison_Powder, level = 22},
-                        new learnset { move = Razor_Leaf, level = 30},
-                        new learnset { move = Growth, level = 38},
-                        new learnset { move = Sleep_Powder, level = 46},
-                        new learnset { move = Solar_Beam, level = 54}
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Leech_Seed, level = 7 },
+                        new learnset { move = Vine_Whip, level = 13 },
+                        new learnset { move = Poison_Powder, level = 22 },
+                        new learnset { move = Razor_Leaf, level = 30 },
+                        new learnset { move = Growth, level = 38 },
+                        new learnset { move = Sleep_Powder, level = 46 },
+                        new learnset { move = Solar_Beam, level = 54 }
                     };
                     break;
                 case "Venusaur":
@@ -373,15 +377,15 @@ namespace Pokémon
                     p.baseSpecial = 100;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Tackle, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Leech_Seed, level = 7},
-                        new learnset { move = Vine_Whip, level = 13},
-                        new learnset { move = Poison_Powder, level = 22},
-                        new learnset { move = Razor_Leaf, level = 30},
-                        new learnset { move = Growth, level = 43},
-                        new learnset { move = Sleep_Powder, level = 55},
-                        new learnset { move = Solar_Beam, level = 65}
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Leech_Seed, level = 7 },
+                        new learnset { move = Vine_Whip, level = 13 },
+                        new learnset { move = Poison_Powder, level = 22 },
+                        new learnset { move = Razor_Leaf, level = 30 },
+                        new learnset { move = Growth, level = 43 },
+                        new learnset { move = Sleep_Powder, level = 55 },
+                        new learnset { move = Solar_Beam, level = 65 }
                     };
                     break;
                 case "Charmander":
@@ -397,14 +401,14 @@ namespace Pokémon
                     p.evolveLevel = 16;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Scratch, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Ember, level = 9},
-                        new learnset { move = Leer, level = 15},
-                        new learnset { move = Rage, level = 22},
-                        new learnset { move = Slash, level = 30},
-                        new learnset { move = Flamethrower, level = 38},
-                        new learnset { move = Fire_Spin, level = 46}
+                        new learnset { move = Scratch, level = 1 },
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Ember, level = 9 },
+                        new learnset { move = Leer, level = 15 },
+                        new learnset { move = Rage, level = 22 },
+                        new learnset { move = Slash, level = 30 },
+                        new learnset { move = Flamethrower, level = 38 },
+                        new learnset { move = Fire_Spin, level = 46 }
                     };
                     break;
                 case "Charmeleon":
@@ -419,14 +423,14 @@ namespace Pokémon
                     p.evolveLevel = 36;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Scratch, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Ember, level = 9},
-                        new learnset { move = Leer, level = 15},
-                        new learnset { move = Rage, level = 24},
-                        new learnset { move = Slash, level = 33},
-                        new learnset { move = Flamethrower, level = 42},
-                        new learnset { move = Fire_Spin, level = 56}
+                        new learnset { move = Scratch, level = 1 },
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Ember, level = 9 },
+                        new learnset { move = Leer, level = 15 },
+                        new learnset { move = Rage, level = 24 },
+                        new learnset { move = Slash, level = 33 },
+                        new learnset { move = Flamethrower, level = 42 },
+                        new learnset { move = Fire_Spin, level = 56 }
                     };
                     break;
                 case "Charizard":
@@ -440,14 +444,14 @@ namespace Pokémon
                     p.baseSpecial = 85;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Scratch, level = 1},
-                        new learnset { move = Growl, level = 1},
-                        new learnset { move = Ember, level = 9},
-                        new learnset { move = Leer, level = 15},
-                        new learnset { move = Rage, level = 24},
-                        new learnset { move = Slash, level = 36},
-                        new learnset { move = Flamethrower, level = 46},
-                        new learnset { move = Fire_Spin, level = 55}
+                        new learnset { move = Scratch, level = 1 },
+                        new learnset { move = Growl, level = 1 },
+                        new learnset { move = Ember, level = 9 },
+                        new learnset { move = Leer, level = 15 },
+                        new learnset { move = Rage, level = 24 },
+                        new learnset { move = Slash, level = 36 },
+                        new learnset { move = Flamethrower, level = 46 },
+                        new learnset { move = Fire_Spin, level = 55 }
                     };
                     break;
                 case "Squirtle":
@@ -463,14 +467,14 @@ namespace Pokémon
                     p.evolveLevel = 16;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Tackle, level = 1},
-                        new learnset { move = Tail_Whip, level = 1},
-                        new learnset { move = Bubble, level = 8},
-                        new learnset { move = Water_Gun, level = 15},
-                        new learnset { move = Bite, level = 22},
-                        new learnset { move = Withdraw, level = 28},
-                        new learnset { move = Skull_Bash, level = 35},
-                        new learnset { move = Hydro_Pump, level = 42}
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1 },
+                        new learnset { move = Bubble, level = 8 },
+                        new learnset { move = Water_Gun, level = 15 },
+                        new learnset { move = Bite, level = 22 },
+                        new learnset { move = Withdraw, level = 28 },
+                        new learnset { move = Skull_Bash, level = 35 },
+                        new learnset { move = Hydro_Pump, level = 42 }
                     };
                     break;
                 case "Wartortle":
@@ -485,14 +489,14 @@ namespace Pokémon
                     p.evolveLevel = 36;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Tackle, level = 1},
-                        new learnset { move = Tail_Whip, level = 1},
-                        new learnset { move = Bubble, level = 8},
-                        new learnset { move = Water_Gun, level = 15},
-                        new learnset { move = Bite, level = 24},
-                        new learnset { move = Withdraw, level = 31},
-                        new learnset { move = Skull_Bash, level = 39},
-                        new learnset { move = Hydro_Pump, level = 47}
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1 },
+                        new learnset { move = Bubble, level = 8 },
+                        new learnset { move = Water_Gun, level = 15 },
+                        new learnset { move = Bite, level = 24 },
+                        new learnset { move = Withdraw, level = 31 },
+                        new learnset { move = Skull_Bash, level = 39 },
+                        new learnset { move = Hydro_Pump, level = 47 }
                     };
                     break;
                 case "Blastoise":
@@ -505,14 +509,55 @@ namespace Pokémon
                     p.baseSpecial = 85;
                     p.learnset = new List<learnset>
                     {
-                        new learnset { move = Tackle, level = 1},
-                        new learnset { move = Tail_Whip, level = 1},
-                        new learnset { move = Bubble, level = 8},
-                        new learnset { move = Water_Gun, level = 15},
-                        new learnset { move = Bite, level = 24},
-                        new learnset { move = Withdraw, level = 31},
-                        new learnset { move = Skull_Bash, level = 42},
-                        new learnset { move = Hydro_Pump, level = 52}
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1 },
+                        new learnset { move = Bubble, level = 8 },
+                        new learnset { move = Water_Gun, level = 15 },
+                        new learnset { move = Bite, level = 24 },
+                        new learnset { move = Withdraw, level = 31 },
+                        new learnset { move = Skull_Bash, level = 42 },
+                        new learnset { move = Hydro_Pump, level = 52 }
+                    };
+                    break;
+                case "Caterpie":
+                    p.name = "Caterpie";
+                    p.type1 = "Bug";
+                    p.baseAttack = 30;
+                    p.baseDefence = 35;
+                    p.baseSpeed = 45;
+                    p.baseSpecial = 20;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = String_Shot, level = 1 },
+                        new learnset { move = Bug_Bite, level = 9 }
+                    };
+                    break;
+                case "Metapod":
+                    p.name = "Metapod";
+                    p.type1 = "Bug";
+                    p.baseAttack = 20;
+                    p.baseDefence = 55;
+                    p.baseSpeed = 30;
+                    p.baseSpecial = 25;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Harden, level = 1 }
+                    };
+                    break;
+                case "Butterfree":
+                    p.name = "Butterfree";
+                    p.type1 = "Bug";
+                    p.type2 = "Flying";
+                    p.baseAttack = 45;
+                    p.baseDefence = 50;
+                    p.baseSpeed = 70;
+                    p.baseSpecial = 80;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Confusion, level = 1},
+                        new learnset { move = String_Shot, level = 1},
+                        new learnset { move = Bug_Bite, level = 9}
                     };
                     break;
             }
