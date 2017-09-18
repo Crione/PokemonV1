@@ -131,7 +131,6 @@ namespace Pokémon
         public move Skull_Bash = new move { name = "Skull Bash", type = "Normal", power = 100, accuracy = 100, totalPp = 15 };
         public move Hydro_Pump = new move { name = "Hydro Pump", type = "Water", power = 120, accuracy = 80, totalPp = 5 };
         public move String_Shot = new move { name = "String Shot", type = "Normal", power = 0, accuracy = 95, totalPp = 40 };
-        public move Bug_Bite = new move { name = "Bug Bite", type = "Bug", power =  }
         public move Harden = new move { name = "Harden", type = "Normal", accuracy = 100, totalPp = 30 };
         public move Confusion = new move { name = "Confusion", type = "Psychic", power = 50, accuracy = 100, totalPp = 25 };
 
