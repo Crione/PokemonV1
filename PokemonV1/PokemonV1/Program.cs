@@ -133,6 +133,10 @@ namespace Pokémon
         public move String_Shot = new move { name = "String Shot", type = "Normal", power = 0, accuracy = 95, totalPp = 40 };
         public move Harden = new move { name = "Harden", type = "Normal", accuracy = 100, totalPp = 30 };
         public move Confusion = new move { name = "Confusion", type = "Psychic", power = 50, accuracy = 100, totalPp = 25 };
+        public move Stun_Spore = new move { name = "Stun Spore", type = "Grass", accuracy = 75, totalPp = 30 };
+        public move Supersonic = new move { name = "Supersonic", type = "Normal", accuracy = 55, totalPp = 20 };
+        public move Whirlwind = new move { name = "Whirlwind", type = "Normal", accuracy = 100, totalPp = 20 };
+        public move Psybeam = new move { name = "Psybeam", type = "Psychic", power = 65, accuracy = 100, totalPp = 20 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -572,8 +576,7 @@ namespace Pokémon
                     p.learnset = new List<learnset>
                     {
                         new learnset { move = Tackle, level = 1 },
-                        new learnset { move = String_Shot, level = 1 },
-                        new learnset { move = Bug_Bite, level = 9 }
+                        new learnset { move = String_Shot, level = 1 }
                     };
                     break;
                 case "Metapod":
@@ -599,8 +602,12 @@ namespace Pokémon
                     p.learnset = new List<learnset>
                     {
                         new learnset { move = Confusion, level = 1},
-                        new learnset { move = String_Shot, level = 1},
-                        new learnset { move = Bug_Bite, level = 9}
+                        new learnset { move = Poison_Powder, level = 15 },
+                        new learnset { move = Stun_Spore, level = 16 },
+                        new learnset { move = Sleep_Powder, level = 17 },
+                        new learnset { move = Supersonic, level = 21 },
+                        new learnset { move = Whirlwind, level = 26 },
+                        new learnset { move = Psybeam, level = 32 }
                     };
                     break;
             }
