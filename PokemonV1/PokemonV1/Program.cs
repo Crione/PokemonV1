@@ -137,6 +137,17 @@ namespace Pokémon
         public move Supersonic = new move { name = "Supersonic", type = "Normal", accuracy = 55, totalPp = 20 };
         public move Whirlwind = new move { name = "Whirlwind", type = "Normal", accuracy = 100, totalPp = 20 };
         public move Psybeam = new move { name = "Psybeam", type = "Psychic", power = 65, accuracy = 100, totalPp = 20 };
+        public move Poison_Sting = new move { name = "Poison Sting", type = "Poison", power = 15, accuracy = 100, totalPp = 35 };
+        public move Fury_Attack = new move { name = "Fury Attack", type = "Normal", power = 15, accuracy = 85, totalPp = 20 };
+        public move Focus_Energy = new move { name = "Focus Energy", type = "Normal", totalPp = 30 };
+        public move Twineedle = new move { name = "Twineedle", type = "Bug", power = 25, accuracy = 100, totalPp = 20 };
+        public move Pin_Missile = new move { name = "Pin Missile", type = "Bug", power = 14, accuracy = 85, totalPp = 20 };
+        public move Agility = new move { name = "Agility", type = "Psychic", totalPp = 30 };
+        public move Gust = new move { name = "Gust", type = "Normal", power = 40, accuracy = 100, totalPp = 35 };
+        public move Sand_Attack = new move { name = "Sand Attack", type = "Normal", accuracy = 100, totalPp = 15 };
+        public move Quick_Attack = new move { name = "Quick Attack", type = "Normal", power = 40, accuracy = 100, totalPp = 30 };
+        public move Wing_Attack = new move { name = "Wing Attack", type = "Flying", power = 35, accuracy = 100, totalPp = 35 };
+        public move Mirror_Move = new move { name = "Mirror Move", type = "Flying", totalPp = 20 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -608,6 +619,70 @@ namespace Pokémon
                         new learnset { move = Supersonic, level = 21 },
                         new learnset { move = Whirlwind, level = 26 },
                         new learnset { move = Psybeam, level = 32 }
+                    };
+                    break;
+                case "Weedle":
+                    p.name = "Weedle";
+                    p.type1 = "Bug";
+                    p.type2 = "Poison";
+                    p.baseAttack = 35;
+                    p.baseDefence = 30;
+                    p.baseSpeed = 50;
+                    p.baseSpecial = 20;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Poison_Sting, level = 1 },
+                        new learnset { move = String_Shot, level = 1 }
+                    };
+                    break;
+                case "Kakuna":
+                    p.name = "Kakuna";
+                    p.type1 = "Bug";
+                    p.type2 = "Poison";
+                    p.baseAttack = 25;
+                    p.baseDefence = 50;
+                    p.baseSpeed = 35;
+                    p.baseSpecial = 25;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Harden, level = 1 }
+                    };
+                    break;
+                case "Beedrill":
+                    p.name = "Beedrill";
+                    p.type1 = "Bug";
+                    p.type2 = "Poison";
+                    p.baseAttack = 80;
+                    p.baseDefence = 40;
+                    p.baseSpeed = 75;
+                    p.baseSpecial = 45;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Fury_Attack, level = 1 },
+                        new learnset { move = Focus_Energy, level = 16 },
+                        new learnset { move = Twineedle, level = 20 },
+                        new learnset { move = Rage, level = 25 },
+                        new learnset { move = Pin_Missile, level = 30 },
+                        new learnset { move = Agility, level = 35 }
+                    };
+                    break;
+                case "Pidgey":
+                    p.name = "Pidgey";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseAttack = 45;
+                    p.baseDefence = 40;
+                    p.baseSpeed = 56;
+                    p.baseSpecial = 35;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 19 },
+                        new learnset { move = Wing_Attack, level = 28 },
+                        new learnset { move = Agility, level = 36 },
+                        new learnset { move = Mirror_Move, level = 44 }
                     };
                     break;
             }
