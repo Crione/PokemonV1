@@ -782,12 +782,68 @@ namespace Pokémon
 
         public void pokemonBattle()
         {
-            int count = r.Next(0, TestPokemon.Count());
-            pokemon e = getPokemon(TestPokemon[count]);
-            WriteLine("A wild " + e.name + " appeared!");
-            /*
-             */ 
-
+          /*int count = r.Next(0, TestPokemon.Count());
+            pokemon e = getPokemon(TestPokemon[count]);*/
+            int percentage = r.Next(0, 101);
+            if(_player.level < 15)
+            {
+                int count = r.Next(0, Common.Count());
+                string pokemon = Common[count];
+            }
+            else if(_player.level >= 15 && _player.level < 30)
+            {
+                if(percentage <= 70)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if(percentage > 70)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+            }
+            else if(_player.level >= 30 && _player.level < 50)
+            {
+                if(percentage <= 63)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if(percentage > 63 && percentage <= 90)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+                else if(percentage > 90)
+                {
+                    int count = r.Next(0, Rare.Count());
+                    string pokemon = Rare[count];
+                }
+            }
+            else if(_player.level >= 50)
+            {
+                if(percentage <= 60)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if(percentage > 60 && percentage <= 85)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+                else if(percentage > 85 && percentage <= 95)
+                {
+                    int count = r.Next(0, Rare.Count());
+                    string pokemon = Rare[count];
+                }
+                else if(percentage > 95)
+                {
+                    int count = r.Next(0, Legendary.Count());
+                    string pokemon = Legendary[count];
+                }
+            }
         }
 
         public void trainerBattle()
