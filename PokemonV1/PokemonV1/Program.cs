@@ -24,6 +24,12 @@ namespace Pokémon
         public List<pokemon> team = new List<pokemon>();
     }
 
+    class rival
+    {
+        public string name { get; set; }
+        public List<pokemon> team = new List<pokemon>();
+    }
+
     class trainer
     {
         public string name { get; set; }
@@ -74,6 +80,7 @@ namespace Pokémon
     class Game
     {
         public player _player = new player();
+        public rival _rival = new rival();
         public Random r = new Random();
         public string invoer;
         public string[] Common = new string[] {"Caterpie","Metapod","Weedle","Kakuna","Pidgey","Pidgeotto","Rattata","Spearow","Sandshrew","Nidoran_F",
@@ -169,7 +176,7 @@ namespace Pokémon
         {
             _player.level = 1;
             _player.gameOver = false;
-            //beginGame();
+            beginGame();
             while (_player.gameOver == false)
             {
                 invoer = Console.ReadLine();
@@ -322,8 +329,8 @@ namespace Pokémon
                         WriteLine("[Oak] Squirtle, a Water type Pokémon.");
                         break;
                 }
-                WriteLine("");
                 WriteLine("      Are you sure that you want to take this Pokémon?");
+                WriteLine("");
                 string choice = invoer;
                 invoer = "";
                 while (invoer != "yes" && invoer != "no")
@@ -358,6 +365,45 @@ namespace Pokémon
                         break;
                 }
             }
+            invoer = "";
+            WriteLine("[Oak] This is your rival, right?");
+            Console.ReadLine();
+            Console.Clear();
+            while (invoer == "")
+            {
+                WriteLine("[Oak] What was his name again?");
+                invoer = Console.ReadLine();
+                Console.Clear();
+                while (invoer != "" && invoer != "yes")
+                {
+                    _rival.name = invoer;
+                    WriteLine("[Oak] So his name is " + _rival.name + "?");
+                    WriteLine("");
+                    while (invoer != "yes" && invoer != "no")
+                    {
+                        WriteLine("      Enter 'yes' or 'no'");
+                        invoer = Console.ReadLine();
+                    }
+                    Console.Clear();
+                    switch (invoer)
+                    {
+                        case "yes":
+                            WriteLine("[Oak] I remember it now!");
+                            WriteLine("      His name is " + _rival.name + "!");
+                            Console.ReadLine();
+                            Console.Clear();
+                            break;
+                        case "no":
+                            invoer = "";
+                            break;
+                        default:
+                            invoer = "";
+                            break;
+                    }
+                }
+            }
+            invoer = "";
+
             WriteLine("[Oak] " + _player.name + "!");
             System.Threading.Thread.Sleep(200);
             WriteLine("      Your very own Pokémon legend is about to unfold!");
