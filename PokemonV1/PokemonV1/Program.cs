@@ -176,7 +176,7 @@ namespace Pokémon
         {
             _player.level = 1;
             _player.gameOver = false;
-            beginGame();
+            //beginGame();
             while (_player.gameOver == false)
             {
                 invoer = Console.ReadLine();
@@ -415,7 +415,7 @@ namespace Pokémon
             Console.Clear();
         }
 
-        public pokemon getPokemon(string _pokemon)
+        public pokemon getPokemon(string _pokemon)      //generate pokemon
         {
             pokemon p = new pokemon();
             p.level = (r.Next(_player.level - 5, (_player.level + 5) + 1)) + 5;
@@ -731,6 +731,25 @@ namespace Pokémon
                         new learnset { move = Mirror_Move, level = 44 }
                     };
                     break;
+                default:
+                    p.name = "Pidgey";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseAttack = 45;
+                    p.baseDefence = 40;
+                    p.baseSpeed = 56;
+                    p.baseSpecial = 35;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 19 },
+                        new learnset { move = Wing_Attack, level = 28 },
+                        new learnset { move = Agility, level = 36 },
+                        new learnset { move = Mirror_Move, level = 44 }
+                    };
+                    break;
             }
             p.totalHp = (p.baseHp + ((p.baseHp / 50) * p.level));
             p.currentHp = p.totalHp;
@@ -740,6 +759,18 @@ namespace Pokémon
             p.special = (p.baseSpecial + ((p.baseSpecial / 50) * p.level));
             p.totalXp = p.level * p.level * p.level;
             p.currentXp = 0;
+            foreach(learnset l in p.learnset)
+            {
+                if(p.level >= l.level)
+                {
+                    if(p.moves.Count == 4)
+                    {
+                        int index = r.Next(0, 5);
+                        p.moves.RemoveAt(index);
+                    }
+                    p.moves.Add(l.move);
+                }
+            }
             return p;
         }
 
@@ -752,7 +783,11 @@ namespace Pokémon
         public void pokemonBattle()
         {
             int count = r.Next(0, TestPokemon.Count());
-            pokemon p = getPokemon(TestPokemon[count]);
+            pokemon e = getPokemon(TestPokemon[count]);
+            WriteLine("A wild " + e.name + " appeared!");
+            /*
+             */ 
+
         }
 
         public void trainerBattle()
