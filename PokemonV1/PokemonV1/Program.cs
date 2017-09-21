@@ -759,7 +759,7 @@ namespace Pokémon
             p.special = (p.baseSpecial + ((p.baseSpecial / 50) * p.level));
             p.totalXp = p.level * p.level * p.level;
             p.currentXp = 0;
-            foreach(learnset l in p.learnset)
+            foreach (learnset l in p.learnset)
             {
                 if(p.level >= l.level)
                 {
