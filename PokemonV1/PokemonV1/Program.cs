@@ -834,13 +834,13 @@ namespace Pokémon
             return t;
         }                                             //Random Trainer
 
-        public pokemon getPokemon(int l)
+        public pokemon getPokemon(int l)    //Random Pokemon
         {
             int count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
             string pokemon = TestPokemon[count];
             pokemon e = getPokemon(pokemon, _player.level);
             return e;
-        }                                        //Random Pokemon
+        }                                        
 
         public string randomPokemon(int l)
         {
