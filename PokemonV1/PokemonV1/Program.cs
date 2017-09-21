@@ -206,6 +206,8 @@ namespace Pokémon
         public move Quick_Attack = new move { name = "Quick Attack", type = "Normal", power = 40, accuracy = 100, totalPp = 30 };
         public move Wing_Attack = new move { name = "Wing Attack", type = "Flying", power = 35, accuracy = 100, totalPp = 35 };
         public move Mirror_Move = new move { name = "Mirror Move", type = "Flying", totalPp = 20 };
+        public move Hyper_Fang = new move { name = "Hyper Fang", type = "Normal", power = 80, accuracy = 90, totalPp = 15 };
+        public move Super_Fang = new move { name = "Super_Fang", type = "Normal", accuracy = 90, totalPp = 10 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -256,7 +258,7 @@ namespace Pokémon
             switch (invoer)
             {
                 case "/generate":
-                    _player.team.Add(getPokemon("Charmander", _player.level));
+                    _player.team.Add(generatePokemon("Charmander", _player.level));
                     break;
                 case "/team":
                     int count;
@@ -406,15 +408,15 @@ namespace Pokémon
                         switch (choice)
                         {
                             case "bulbasaur":
-                                _player.team.Add(getPokemon("Bulbasaur", _player.level));
+                                _player.team.Add(generatePokemon("Bulbasaur", _player.level));
                                 WriteLine("      Bulbasaur has been added to your Pokémon team!");
                                 break;
                             case "charmander":
-                                _player.team.Add(getPokemon("Charmander", _player.level));
+                                _player.team.Add(generatePokemon("Charmander", _player.level));
                                 WriteLine("      Charmander has been added to your Pokémon team!");
                                 break;
                             case "squirtle":
-                                _player.team.Add(getPokemon("Squirtle", _player.level));
+                                _player.team.Add(generatePokemon("Squirtle", _player.level));
                                 WriteLine("      Squirtle has been added to your Pokémon team!");
                                 break;
                         }
@@ -476,7 +478,7 @@ namespace Pokémon
             Console.Clear();
         }                                                 //Begin game met prof. Oak
 
-        public pokemon getPokemon(string _pokemon, int level)
+        public pokemon generatePokemon(string _pokemon, int level)
         {
             pokemon p = new pokemon();
             p.level = (r.Next(level - 5, (level + 5) + 1)) + 5;
@@ -691,6 +693,7 @@ namespace Pokémon
                 case "Caterpie":
                     p.name = "Caterpie";
                     p.type1 = "Bug";
+                    p.baseHp = 45;
                     p.baseAttack = 30;
                     p.baseDefence = 35;
                     p.baseSpeed = 45;
@@ -704,6 +707,7 @@ namespace Pokémon
                 case "Metapod":
                     p.name = "Metapod";
                     p.type1 = "Bug";
+                    p.baseHp = 50;
                     p.baseAttack = 20;
                     p.baseDefence = 55;
                     p.baseSpeed = 30;
@@ -715,6 +719,7 @@ namespace Pokémon
                     break;
                 case "Butterfree":
                     p.name = "Butterfree";
+                    p.baseHp = 60;
                     p.type1 = "Bug";
                     p.type2 = "Flying";
                     p.baseAttack = 45;
@@ -736,6 +741,7 @@ namespace Pokémon
                     p.name = "Weedle";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 40;
                     p.baseAttack = 35;
                     p.baseDefence = 30;
                     p.baseSpeed = 50;
@@ -750,6 +756,7 @@ namespace Pokémon
                     p.name = "Kakuna";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 45;
                     p.baseAttack = 25;
                     p.baseDefence = 50;
                     p.baseSpeed = 35;
@@ -763,6 +770,7 @@ namespace Pokémon
                     p.name = "Beedrill";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 65;
                     p.baseAttack = 80;
                     p.baseDefence = 40;
                     p.baseSpeed = 75;
@@ -781,6 +789,7 @@ namespace Pokémon
                     p.name = "Pidgey";
                     p.type1 = "Normal";
                     p.type2 = "Flying";
+                    p.baseHp = 40;
                     p.baseAttack = 45;
                     p.baseDefence = 40;
                     p.baseSpeed = 56;
@@ -796,10 +805,87 @@ namespace Pokémon
                         new learnset { move = Mirror_Move, level = 44 }
                     };
                     break;
+                case "Pidgeotto":
+                    p.name = "Pidgeotto";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseHp = 63;
+                    p.baseAttack = 60;
+                    p.baseDefence = 55;
+                    p.baseSpeed = 71;
+                    p.baseSpecial = 50;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 21 },
+                        new learnset { move = Wing_Attack, level = 31 },
+                        new learnset { move = Agility, level = 40 },
+                        new learnset { move = Mirror_Move, level = 49 }
+                    };
+                    break;
+                case "Pigeot":
+                    p.name = "Pigeot";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseHp = 83;
+                    p.baseAttack = 80;
+                    p.baseDefence = 75;
+                    p.baseSpeed = 91;
+                    p.baseSpecial = 70;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 21 },
+                        new learnset { move = Wing_Attack, level = 31 },
+                        new learnset { move = Agility, level = 44 },
+                        new learnset { move = Mirror_Move, level = 54 }
+                    };
+                    break;
+                case "Rattata":
+                    p.name = "Rattata";
+                    p.type1 = "Normal";
+                    p.baseHp = 30;
+                    p.baseAttack = 56;
+                    p.baseDefence = 35;
+                    p.baseSpeed = 72;
+                    p.baseSpecial = 25;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1},
+                        new learnset { move = Quick_Attack, level = 7 },
+                        new learnset { move = Hyper_Fang, level = 14 },
+                        new learnset { move = Focus_Energy, level = 23 },
+                        new learnset { move = Super_Fang, level = 34 },
+                    };
+                    break;
+                case "Raticate":
+                    p.name = "Raticate";
+                    p.type1 = "Normal";
+                    p.baseHp = 55;
+                    p.baseAttack = 81;
+                    p.baseDefence = 60;
+                    p.baseSpeed = 97;
+                    p.baseSpecial = 50;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1},
+                        new learnset { move = Quick_Attack, level = 7 },
+                        new learnset { move = Hyper_Fang, level = 14 },
+                        new learnset { move = Focus_Energy, level = 27 },
+                        new learnset { move = Super_Fang, level = 41 },
+                    };
+                    break;
                 default:
                     p.name = "Pidgey";
                     p.type1 = "Normal";
                     p.type2 = "Flying";
+                    p.baseHp = 40;
                     p.baseAttack = 45;
                     p.baseDefence = 40;
                     p.baseSpeed = 56;
@@ -838,7 +924,7 @@ namespace Pokémon
             }
             p.faint = false;
             return p;
-        }                   //Generate stats voor een bepaalde pokemon
+        }              //Generate stats voor een bepaalde pokemon
 
         public trainer getTrainer()
         {
@@ -874,7 +960,7 @@ namespace Pokémon
             {
                 count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
                 string pokemon = TestPokemon[count];
-                pokemon a = getPokemon(pokemon, _player.level);
+                pokemon a = generatePokemon(pokemon, _player.level);
                 t.team.Add(a);
             }
             return t;
@@ -884,7 +970,7 @@ namespace Pokémon
         {
             int count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
             string pokemon = TestPokemon[count];
-            pokemon e = getPokemon(pokemon, _player.level);
+            pokemon e = generatePokemon(pokemon, _player.level);
             return e;
         }                                        //Random Pokemon
 
