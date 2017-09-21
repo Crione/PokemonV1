@@ -251,7 +251,7 @@ namespace Pokémon
             }
         }
         
-        public void command(string invoer)
+        public void command(string invoer)      //Alle invoerbare commands
         {
             switch (invoer)
             {
@@ -294,9 +294,9 @@ namespace Pokémon
                     Console.WriteLine("0----------------0");
                     break;
             }
-        }                                      //Alle invoerbare commands
+        }                                      
 
-        public void beginGame()
+        public void beginGame()     //Begin game met prof. Oak
         {
             WriteLine("[???] Hello, there!");
             WriteLine("      Glad to meet you!");
@@ -474,9 +474,9 @@ namespace Pokémon
             WriteLine("      Let's go!");
             Console.ReadLine();
             Console.Clear();
-        }                                                 //Begin game met prof. Oak
+        }                                                 
 
-        public pokemon getPokemon(string _pokemon, int level)
+        public pokemon getPokemon(string _pokemon, int level)       //Generate stats voor een bepaalde pokemon
         {
             pokemon p = new pokemon();
             p.level = (r.Next(level - 5, (level + 5) + 1)) + 5;
@@ -838,9 +838,9 @@ namespace Pokémon
             }
             p.faint = false;
             return p;
-        }                   //Generate stats voor een bepaalde pokemon
+        }                   
 
-        public trainer getTrainer()
+        public trainer getTrainer()     //Random Trainer
         {
             int count;
             trainer t = new trainer();
@@ -878,7 +878,7 @@ namespace Pokémon
                 t.team.Add(a);
             }
             return t;
-        }                                             //Random Trainer
+        }                                             
 
         public pokemon getPokemon(int l)    //Random Pokemon
         {
@@ -888,7 +888,7 @@ namespace Pokémon
             return e;
         }                                        
 
-        public string randomPokemon(int l)
+        public string randomPokemon(int l)      //Random Pokemon string, aan de hand van player/trainerlevel
         {
             string p = "";
             int percentage = r.Next(0, 101);
@@ -952,7 +952,7 @@ namespace Pokémon
                 }
             }
             return p;
-        }                                      //Random Pokemon string, aan de hand van player/trainerlevel
+        }                                      
 
         public void battle(trainer t, pokemon e)
         {
