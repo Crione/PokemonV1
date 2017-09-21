@@ -32,6 +32,8 @@ namespace Pokémon
 
     class trainer
     {
+        public int level { get; set; }
+        public string prefix { get; set; }
         public string name { get; set; }
         public List<pokemon> team = new List<pokemon>();
     }
@@ -114,6 +116,10 @@ namespace Pokémon
             Porygon, Omanyte, Omastar, Kabuto, Kabutops, Aerodactyl, Snorlax, Articuno, Zapdos, Moltres, Dratini, Dragonair, Dragonite, Mewtwo, Mew
         };
 
+        public string[] TPrefix = new string[] {"Pokémon Trainer"};
+        public string[] TName = new string[] {"Gordon", "Annette", "Shaun", "Anna", "Sara", "Max", "Charlotte", "Fernandez", "Tom", "Todd", "Hugh", "Cloudia", "Pablo",
+            "Bruce", "Walter", "Jane", "Courtney", "Karla", "Bryan", "Laura", "Cindy", "Oscar", "Amber", "Lauren", "Marco", "Tina", "Patrick", "Mike", "Rick", "Luther"};
+
         public move Tackle = new move { name = "Tackle", type = "Normal", power = 35, accuracy = 95, totalPp = 35};
         public move Growl = new move { name = "Growl", type = "Normal", accuracy = 100, totalPp = 40 };
         public move Leech_Seed = new move { name = "Leech Seed", type = "Grass", accuracy = 90, totalPp = 10 };
@@ -180,62 +186,72 @@ namespace Pokémon
             while (_player.gameOver == false)
             {
                 invoer = Console.ReadLine();
-                switch (invoer)
+                if(invoer == "")
                 {
-                    case "/generate":
-                        _player.team.Add(getPokemon("Charmander"));
-                        break;
-                    case "/team":
-                        int count;
-                        int t = 1;
-                        Console.WriteLine("0------TEAM------0");
-                        foreach (pokemon p in _player.team)
-                        {
-                            if(t != 1)
-                            {
-                                Console.WriteLine("|----------------|");
-                            }
-                            count = p.name.Count();
-                            Console.Write("|" + p.name);
-                            for(int i = 0; i <= (15 - count) ; i++)
-                            {
-                                Console.Write(" ");
-                            }
-                            Console.WriteLine("|");
-                            Console.Write("|LEVEL");
-                            count = p.level.ToString().Count();
-                            for (int i = 0; i <= (10 - count); i++)
-                            {
-                                Console.Write(" ");
-                            }
-                            Console.WriteLine(p.level + "|");
-                            Console.Write("|HP");
-                            count = p.baseHp.ToString().Count() + p.currentHp.ToString().Count() + 1;
-                            for (int i = 0; i <= (13 - count); i++)
-                            {
-                                Console.Write(" ");
-                            }
-                            Console.WriteLine(p.baseHp + "/" + p.currentHp  + "|");
-                            t++;
-                        }
-                        Console.WriteLine("0----------------0");
-                        break;
-                    case "":
-                        int percentage = r.Next(1, 101);
-                        if (percentage > 100 && percentage <= 100)                      //30%
-                        {
-                            trainerBattle();
-                        }
-                        else if (percentage > 0 && percentage <= 100)              //70%
-                        {
-                            pokemonBattle();
-                        }
-                        break;
+                    int percentage = r.Next(1, 101);
+                    if (percentage > 0 && percentage <= 30)                      //30%
+                    {
+                        trainer t = getTrainer();
+                        WriteLine(t.prefix + " " + t.name + " wants to battle!");
+                    }
+                    else if (percentage > 30 && percentage <= 100)              //70%
+                    {
+                        pokemon e = getPokemon(_player.level);
+                        WriteLine("A wild" + e.name + " appeared!");
+                    }
+                }else
+                {
+                    command(invoer);
                 }
             }
         }
+        
+        public void command(string invoer)
+        {
+            switch (invoer)
+            {
+                case "/generate":
+                    _player.team.Add(getPokemon("Charmander", _player.level));
+                    break;
+                case "/team":
+                    int count;
+                    int t = 1;
+                    Console.WriteLine("0------TEAM------0");
+                    foreach (pokemon p in _player.team)
+                    {
+                        if (t != 1)
+                        {
+                            Console.WriteLine("|----------------|");
+                        }
+                        count = p.name.Count();
+                        Console.Write("|" + p.name);
+                        for (int i = 0; i <= (15 - count); i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.WriteLine("|");
+                        Console.Write("|LEVEL");
+                        count = p.level.ToString().Count();
+                        for (int i = 0; i <= (10 - count); i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.WriteLine(p.level + "|");
+                        Console.Write("|HP");
+                        count = p.baseHp.ToString().Count() + p.currentHp.ToString().Count() + 1;
+                        for (int i = 0; i <= (13 - count); i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.WriteLine(p.baseHp + "/" + p.currentHp + "|");
+                        t++;
+                    }
+                    Console.WriteLine("0----------------0");
+                    break;
+            }
+        }                                      //Alle invoerbare commands
 
-        public void beginGame()    //Begin Sequence
+        public void beginGame()
         {
             WriteLine("[???] Hello, there!");
             WriteLine("      Glad to meet you!");
@@ -345,15 +361,15 @@ namespace Pokémon
                         switch (choice)
                         {
                             case "bulbasaur":
-                                _player.team.Add(getPokemon("Bulbasaur"));
+                                _player.team.Add(getPokemon("Bulbasaur", _player.level));
                                 WriteLine("      Bulbasaur has been added to your Pokémon team!");
                                 break;
                             case "charmander":
-                                _player.team.Add(getPokemon("Charmander"));
+                                _player.team.Add(getPokemon("Charmander", _player.level));
                                 WriteLine("      Charmander has been added to your Pokémon team!");
                                 break;
                             case "squirtle":
-                                _player.team.Add(getPokemon("Squirtle"));
+                                _player.team.Add(getPokemon("Squirtle", _player.level));
                                 WriteLine("      Squirtle has been added to your Pokémon team!");
                                 break;
                         }
@@ -413,12 +429,16 @@ namespace Pokémon
             WriteLine("      Let's go!");
             Console.ReadLine();
             Console.Clear();
-        }
+        }                                                 //Begin game met prof. Oak
 
-        public pokemon getPokemon(string _pokemon)      //generate pokemon
+        public pokemon getPokemon(string _pokemon, int level)
         {
             pokemon p = new pokemon();
-            p.level = (r.Next(_player.level - 5, (_player.level + 5) + 1)) + 5;
+            p.level = (r.Next(level - 5, (level + 5) + 1)) + 5;
+            if(p.level < 5)
+            {
+                p.level = 5;
+            }
             switch (_pokemon)
             {
                 case "Bulbasaur":
@@ -772,27 +792,125 @@ namespace Pokémon
                 }
             }
             return p;
-        }
+        }                   //Generate stats voor een bepaalde pokemon
 
         public trainer getTrainer()
         {
+            int count;
             trainer t = new trainer();
+            t.level = r.Next(_player.level - 2, _player.level + 4);
+            if(t.level <= 0)
+            {
+                t.level = 1;
+            }
+            count = r.Next(0, TPrefix.Count());
+            t.prefix = TPrefix[count];
+            count = r.Next(0, TName.Count());
+            t.name = TName[count];
+            int p = 0;
+            if(t.level < 10)
+            {
+                p = 2;
+            }else if(t.level >= 10 && t.level < 15)
+            {
+                p = 3;
+            }else if(t.level >= 15 && t.level < 20)
+            {
+                p = 4;
+            }else if(t.level >= 20 && t.level < 25)
+            {
+                p = 5;
+            }else if(t.level >= 25)
+            {
+                p = 6;
+            }
+            for(int i = 1; i <= p; i++)
+            {
+                count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
+                string pokemon = TestPokemon[count];
+                pokemon a = getPokemon(pokemon, _player.level);
+                t.team.Add(a);
+            }
             return t;
-        }
+        }                                             //Random Trainer
 
-        public void pokemonBattle()
+        public pokemon getPokemon(int l)
         {
-            int count = r.Next(0, TestPokemon.Count());
-            pokemon e = getPokemon(TestPokemon[count]);
-            WriteLine("A wild " + e.name + " appeared!");
-            /*
-             */ 
+            int count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
+            string pokemon = TestPokemon[count];
+            pokemon e = getPokemon(pokemon, _player.level);
+            return e;
+        }                                        //Random Pokemon
 
-        }
-
-        public void trainerBattle()
+        public string randomPokemon(int l)
         {
-            getTrainer();
+            string p = "";
+            int percentage = r.Next(0, 101);
+            if (l < 15)
+            {
+                int count = r.Next(0, Common.Count());
+                string pokemon = Common[count];
+            }
+            else if (l >= 15 && l < 30)
+            {
+                if (percentage <= 70)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if (percentage > 70)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+            }
+            else if (l >= 30 && l < 50)
+            {
+                if (percentage <= 63)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if (percentage > 63 && percentage <= 90)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+                else if (percentage > 90)
+                {
+                    int count = r.Next(0, Rare.Count());
+                    string pokemon = Rare[count];
+                }
+            }
+            else if (l >= 50)
+            {
+                if (percentage <= 60)
+                {
+                    int count = r.Next(0, Common.Count());
+                    string pokemon = Common[count];
+                }
+                else if (percentage > 60 && percentage <= 85)
+                {
+                    int count = r.Next(0, Uncommon.Count());
+                    string pokemon = Uncommon[count];
+                }
+                else if (percentage > 85 && percentage <= 95)
+                {
+                    int count = r.Next(0, Rare.Count());
+                    string pokemon = Rare[count];
+                }
+                else if (percentage > 95)
+                {
+                    int count = r.Next(0, Legendary.Count());
+                    string pokemon = Legendary[count];
+                }
+            }
+            return p;
+        }                                      //Random Pokemon string, aan de hand van player/trainerlevel
+
+        public void battle(trainer t, pokemon e)
+        {
+
         }
     }
 }
