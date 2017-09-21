@@ -197,7 +197,7 @@ namespace Pokémon
                     else if (percentage > 30 && percentage <= 100)              //70%
                     {
                         pokemon e = getPokemon(_player.level);
-                        WriteLine("A wild" + e.name + " appeared!");
+                        WriteLine("A wild " + e.name + " appeared!");
                     }
                 }else
                 {
