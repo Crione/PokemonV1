@@ -20,8 +20,39 @@ namespace Pokémon
     {
         public string name { get; set; }
         public int level { get; set; }
+        public int coins { get; set; }
         public bool gameOver { get; set; }
+        public List<bag> bag = new List<bag>();
         public List<pokemon> team = new List<pokemon>();
+    }
+
+    class bag
+    {
+        public List<potion> potions = new List<potion>();
+        public List<pokeball> pokeballs = new List<pokeball>();
+    }
+
+    class items
+    {
+        public string type { get; set; }
+        public int cost { get; set; }
+        public int unlock { get; set; }
+        public int amount { get; set; }
+    }
+
+    class potion : items
+    {
+        public int recover { get; set; }
+    }
+
+    class pokeball : items
+    {
+        public int catchrate { get; set; }
+    }
+
+    class revive : items
+    {
+        public int recover { get; set; }
     }
 
     class rival
@@ -61,6 +92,7 @@ namespace Pokémon
         public List<move> moves = new List<move>();
         public string evolve { get; set; }
         public int evolveLevel { get; set; }
+        public bool faint { get; set; }
     }
 
     class learnset
@@ -119,6 +151,19 @@ namespace Pokémon
         public string[] TPrefix = new string[] {"Pokémon Trainer"};
         public string[] TName = new string[] {"Gordon", "Annette", "Shaun", "Anna", "Sara", "Max", "Charlotte", "Fernandez", "Tom", "Todd", "Hugh", "Cloudia", "Pablo",
             "Bruce", "Walter", "Jane", "Courtney", "Karla", "Bryan", "Laura", "Cindy", "Oscar", "Amber", "Lauren", "Marco", "Tina", "Patrick", "Mike", "Rick", "Luther"};
+
+        public pokeball pokeball = new pokeball { type = "Poké ball", catchrate = 256, cost = 200, unlock = 1};
+        public pokeball great_ball = new pokeball { type = "Great ball", catchrate = 201, cost = 600, unlock = 15};
+        public pokeball ultra_ball = new pokeball { type = "Ultra ball", catchrate = 151, cost = 1200, unlock = 30};
+        public pokeball master_ball = new pokeball { type = "Master ball", catchrate = 1, unlock = 50};
+
+        public potion potion = new potion { type = "Potion", recover = 20, cost = 200, unlock = 1 };
+        public potion super_potion = new potion { type = "Super potion", recover = 50, cost = 700, unlock = 15 };
+        public potion hyper_potion = new potion { type = "Hyper potion", recover = 200, cost = 1500, unlock = 30 };
+        public potion max_potion = new potion { type = "Max potion", recover = 0, cost = 2500, unlock = 40 };
+
+        public revive revive = new revive { type = "Revive", recover = 50, cost = 1500, unlock = 20 };
+        public revive max_revive = new revive { type = "Max revive", recover = 100, cost = 5000, unlock = 40 };
 
         public move Tackle = new move { name = "Tackle", type = "Normal", power = 35, accuracy = 95, totalPp = 35};
         public move Growl = new move { name = "Growl", type = "Normal", accuracy = 100, totalPp = 40 };
@@ -791,6 +836,7 @@ namespace Pokémon
                     p.moves.Add(l.move);
                 }
             }
+            p.faint = false;
             return p;
         }                   //Generate stats voor een bepaalde pokemon
 
