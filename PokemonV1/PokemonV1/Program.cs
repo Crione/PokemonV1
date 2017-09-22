@@ -267,23 +267,24 @@ namespace Pokémon
                         pokemon e = getPokemon(_player.level);
                         WriteLine("A wild " + e.name + " appeared!");
                     }
-                }else
+                }
+                else
                 {
                     command(invoer);
                 }
             }
         }
         
-        public void command(string invoer)
+        public void command(string invoer)      //Alle invoerbare commands
         {
             int count;
             Console.WriteLine();
             switch (invoer)
             {
-                case "/generate":
+                case "/generate":       //Generates a pokémon, in this case a Charmander
                     _player.team.Add(generatePokemon("Charmander", _player.level));
                     break;
-                case "/team":
+                case "/team":       //Show the list of your team
                     int t = 1;
                     Console.WriteLine("0------TEAM------0");
                     foreach (pokemon p in _player.team)
@@ -317,7 +318,7 @@ namespace Pokémon
                     }
                     Console.WriteLine("0----------------0");
                     break;
-                case "/bag !p":
+                case "/bag !p":     //Shows pokeballs pocket in the bag
                     Console.Write("0--");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("POKEBALLS");
@@ -338,7 +339,7 @@ namespace Pokémon
                     }
                     Console.WriteLine("0-------------0");
                     break;
-                case "/bag !m":
+                case "/bag !m":     //Shows medicine pocket in the bag
                     Console.Write("0---");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("MEDICINE");
@@ -373,13 +374,18 @@ namespace Pokémon
 
                     Console.WriteLine("0--------------0");
                     break;
+                case "/help":       //Shows all the commands. Needs to be updated everytime a command is added
+                    Console.WriteLine("/team: Shows your team of pokémons.");
+                    Console.WriteLine("/bag !p: Shows the pokéballs pocket in your bag.");
+                    Console.WriteLine("/bag !m: Shows the medicine pocket in your bag.");
+                    break;
                 default:
-                    Console.WriteLine("Unknow command, please type '/help' for a list of commands.");
+                    Console.WriteLine("Unknown command, please type '/help' for a list of commands.");
                     break;
             }
-        }                                      //Alle invoerbare commands
+        }                                      
 
-        public void beginGame()
+        public void beginGame()     //Begin game met prof. Oak
         {
             WriteLine("[???] Hello, there!");
             WriteLine("      Glad to meet you!");
@@ -569,7 +575,7 @@ namespace Pokémon
             WriteLine("      Let's go!");
             Console.ReadLine();
             Console.Clear();
-        }                                                 //Begin game met prof. Oak
+        }
 
         public pokemon generatePokemon(string _pokemon, int level)
         {
@@ -1019,7 +1025,7 @@ namespace Pokémon
             return p;
         }              //Generate stats voor een bepaalde pokemon
 
-        public trainer getTrainer()
+        public trainer getTrainer()     //Random Trainer
         {
             int count;
             trainer t = new trainer();
@@ -1057,7 +1063,7 @@ namespace Pokémon
                 t.team.Add(a);
             }
             return t;
-        }                                             //Random Trainer
+        }                                             
 
         public pokemon getPokemon(int l)    //Random Pokemon
         {
