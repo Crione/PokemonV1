@@ -23,7 +23,6 @@ namespace Pokémon
         public int level { get; set; }
         public int coins { get; set; }
         public bool gameOver { get; set; }
-        public List<bag> bag = new List<bag>();
         public List<pokemon> team = new List<pokemon>();
     }
 
@@ -61,6 +60,11 @@ namespace Pokémon
     {
         public string name { get; set; }
         public List<pokemon> team = new List<pokemon>();
+    }
+
+    class town
+    {
+        public string name { get; set; }
     }
 
     class trainer
@@ -115,6 +119,7 @@ namespace Pokémon
 
     class Game
     {
+        #region
         public player _player = new player();
         public bag b = new bag();
         public rival _rival = new rival();
@@ -154,6 +159,17 @@ namespace Pokémon
         public string[] TPrefix = new string[] {"Pokémon Trainer"};
         public string[] TName = new string[] {"Gordon", "Annette", "Shaun", "Anna", "Sara", "Max", "Charlotte", "Fernandez", "Tom", "Todd", "Hugh", "Cloudia", "Pablo",
             "Bruce", "Walter", "Jane", "Courtney", "Karla", "Bryan", "Laura", "Cindy", "Oscar", "Amber", "Lauren", "Marco", "Tina", "Patrick", "Mike", "Rick", "Luther"};
+
+        public town pallet_town = new town { name = "Pallet Town"};
+        public town viridian_city = new town { name = "Viridian City"};
+        public town pewter_city = new town { name = "Pewter City"};
+        public town cerulean_city = new town { name = "Cerulean City"};
+        public town vermilion_city = new town { name = "Vermilion City"};
+        public town lavender_town = new town { name = "Lavender Town"};
+        public town celadon_city = new town { name = "Celadon City"};
+        public town fuchsia_city = new town { name = "Fuchsia City"};
+        public town saffron_city = new town { name = "Saffron City"};
+        public town cinnabar_island = new town { name = "Cinnabar Island"};
 
         public pokeball pokeball = new pokeball { type = "Poké Ball", catchrate = 256, cost = 200, unlock = 1, amount = 0};
         public pokeball great_ball = new pokeball { type = "Great Ball", catchrate = 201, cost = 600, unlock = 15, amount = 0 };
@@ -211,6 +227,7 @@ namespace Pokémon
         public move Mirror_Move = new move { name = "Mirror Move", type = "Flying", totalPp = 20 };
         public move Hyper_Fang = new move { name = "Hyper Fang", type = "Normal", power = 80, accuracy = 90, totalPp = 15 };
         public move Super_Fang = new move { name = "Super_Fang", type = "Normal", accuracy = 90, totalPp = 10 };
+        #endregion                                     //Alle aanroepingen
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
