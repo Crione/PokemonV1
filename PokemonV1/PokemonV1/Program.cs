@@ -236,15 +236,17 @@ namespace Pokémon
                 if(invoer == "")
                 {
                     int percentage = r.Next(1, 101);
-                    if (percentage > 0 && percentage <= 30)                      //30%
+                    if (percentage > 0 && percentage <= 28)                      //28%
                     {
                         trainer t = getTrainer();
                         WriteLine(t.prefix + " " + t.name + " wants to battle!");
-                    }
-                    else if (percentage > 30 && percentage <= 100)              //70%
+                    }else if(percentage > 28 && percentage <= 95)              //67%
                     {
                         pokemon e = getPokemon(_player.level);
                         WriteLine("A wild " + e.name + " appeared!");
+                    }else if(percentage > 95 && percentage <= 100)
+                    {
+
                     }
                 }else
                 {
