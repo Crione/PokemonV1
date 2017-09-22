@@ -10,6 +10,7 @@ namespace Pokémon
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Game g = new Pokémon.Game();
             g.Start();
         }
@@ -29,10 +30,11 @@ namespace Pokémon
     class bag
     {
         public List<potion> potions = new List<potion>();
+        public List<revive> revives = new List<revive>();
         public List<pokeball> pokeballs = new List<pokeball>();
     }
 
-    class items
+    class item
     {
         public string type { get; set; }
         public int cost { get; set; }
@@ -40,17 +42,17 @@ namespace Pokémon
         public int amount { get; set; }
     }
 
-    class potion : items
+    class potion : item
     {
         public int recover { get; set; }
     }
 
-    class pokeball : items
+    class pokeball : item
     {
         public int catchrate { get; set; }
     }
 
-    class revive : items
+    class revive : item
     {
         public int recover { get; set; }
     }
@@ -114,6 +116,7 @@ namespace Pokémon
     class Game
     {
         public player _player = new player();
+        public bag b = new bag();
         public rival _rival = new rival();
         public Random r = new Random();
         public string invoer;
@@ -152,18 +155,18 @@ namespace Pokémon
         public string[] TName = new string[] {"Gordon", "Annette", "Shaun", "Anna", "Sara", "Max", "Charlotte", "Fernandez", "Tom", "Todd", "Hugh", "Cloudia", "Pablo",
             "Bruce", "Walter", "Jane", "Courtney", "Karla", "Bryan", "Laura", "Cindy", "Oscar", "Amber", "Lauren", "Marco", "Tina", "Patrick", "Mike", "Rick", "Luther"};
 
-        public pokeball pokeball = new pokeball { type = "Poké ball", catchrate = 256, cost = 200, unlock = 1};
-        public pokeball great_ball = new pokeball { type = "Great ball", catchrate = 201, cost = 600, unlock = 15};
-        public pokeball ultra_ball = new pokeball { type = "Ultra ball", catchrate = 151, cost = 1200, unlock = 30};
-        public pokeball master_ball = new pokeball { type = "Master ball", catchrate = 1, unlock = 50};
+        public pokeball pokeball = new pokeball { type = "Poké Ball", catchrate = 256, cost = 200, unlock = 1, amount = 0};
+        public pokeball great_ball = new pokeball { type = "Great Ball", catchrate = 201, cost = 600, unlock = 15, amount = 0 };
+        public pokeball ultra_ball = new pokeball { type = "Ultra Ball", catchrate = 151, cost = 1200, unlock = 30, amount = 0 };
+        public pokeball master_ball = new pokeball { type = "Master Ball", catchrate = 1, unlock = 50, amount = 0 };
 
-        public potion potion = new potion { type = "Potion", recover = 20, cost = 200, unlock = 1 };
-        public potion super_potion = new potion { type = "Super potion", recover = 50, cost = 700, unlock = 15 };
-        public potion hyper_potion = new potion { type = "Hyper potion", recover = 200, cost = 1500, unlock = 30 };
-        public potion max_potion = new potion { type = "Max potion", recover = 0, cost = 2500, unlock = 40 };
+        public potion potion = new potion { type = "Potion", recover = 20, cost = 200, unlock = 1, amount = 0 };
+        public potion super_potion = new potion { type = "Super Potion", recover = 50, cost = 700, unlock = 15, amount = 0 };
+        public potion hyper_potion = new potion { type = "Hyper Potion", recover = 200, cost = 1500, unlock = 30, amount = 0 };
+        public potion max_potion = new potion { type = "Max Potion", recover = 0, cost = 2500, unlock = 40, amount = 0 };
 
-        public revive revive = new revive { type = "Revive", recover = 50, cost = 1500, unlock = 20 };
-        public revive max_revive = new revive { type = "Max revive", recover = 100, cost = 5000, unlock = 40 };
+        public revive revive = new revive { type = "Revive", recover = 50, cost = 1500, unlock = 20, amount = 0 };
+        public revive max_revive = new revive { type = "Max Revive", recover = 100, cost = 5000, unlock = 40, amount = 0 };
 
         public move Tackle = new move { name = "Tackle", type = "Normal", power = 35, accuracy = 95, totalPp = 35};
         public move Growl = new move { name = "Growl", type = "Normal", accuracy = 100, totalPp = 40 };
@@ -206,6 +209,8 @@ namespace Pokémon
         public move Quick_Attack = new move { name = "Quick Attack", type = "Normal", power = 40, accuracy = 100, totalPp = 30 };
         public move Wing_Attack = new move { name = "Wing Attack", type = "Flying", power = 35, accuracy = 100, totalPp = 35 };
         public move Mirror_Move = new move { name = "Mirror Move", type = "Flying", totalPp = 20 };
+        public move Hyper_Fang = new move { name = "Hyper Fang", type = "Normal", power = 80, accuracy = 90, totalPp = 15 };
+        public move Super_Fang = new move { name = "Super_Fang", type = "Normal", accuracy = 90, totalPp = 10 };
 
         static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray, bool endline = true)     // Andere style van text output
         {
@@ -223,10 +228,28 @@ namespace Pokémon
             }
         }
 
+        public bag fillBag()
+        {
+            b.pokeballs.Add(pokeball);
+            b.pokeballs.Add(great_ball);
+            b.pokeballs.Add(ultra_ball);
+            b.pokeballs.Add(master_ball);
+            b.potions.Add(potion);
+            b.potions.Add(super_potion);
+            b.potions.Add(hyper_potion);
+            b.potions.Add(max_potion);
+            b.revives.Add(revive);
+            b.revives.Add(max_revive);
+            b.pokeballs.Where(pokeball => pokeball.type == "Poké Ball").ToList().ForEach(pokeball => pokeball.amount = pokeball.amount + 5);
+            b.potions.Where(potion => potion.type == "Potion").ToList().ForEach(potion => potion.amount = potion.amount + 1);
+            return b;
+        }
+
         public void Start()
         {
             _player.level = 1;
             _player.gameOver = false;
+            bag b = fillBag();
             //beginGame();
             while (_player.gameOver == false)
             {
@@ -251,15 +274,16 @@ namespace Pokémon
             }
         }
         
-        public void command(string invoer)      //Alle invoerbare commands
+        public void command(string invoer)
         {
+            int count;
+            Console.WriteLine();
             switch (invoer)
             {
                 case "/generate":
-                    _player.team.Add(getPokemon("Charmander", _player.level));
+                    _player.team.Add(generatePokemon("Charmander", _player.level));
                     break;
                 case "/team":
-                    int count;
                     int t = 1;
                     Console.WriteLine("0------TEAM------0");
                     foreach (pokemon p in _player.team)
@@ -293,10 +317,69 @@ namespace Pokémon
                     }
                     Console.WriteLine("0----------------0");
                     break;
-            }
-        }                                      
+                case "/bag !p":
+                    Console.Write("0--");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("POKEBALLS");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("--0");
+                    foreach(pokeball p in b.pokeballs)
+                    {
+                        if(p.amount != 0)
+                        {
+                            Console.Write("|" + p.type);
+                            count = (p.type + p.amount.ToString()).Count();
+                            for (int i = 0; i <= (12 - count); i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine(p.amount + "|");
+                        }
+                    }
+                    Console.WriteLine("0-------------0");
+                    break;
+                case "/bag !m":
+                    Console.Write("0---");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("MEDICINE");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("---0");
+                    foreach (potion p in b.potions)
+                    {
+                        if (p.amount != 0)
+                        {
+                            Console.Write("|" + p.type);
+                            count = (p.type + p.amount.ToString()).Count();
+                            for (int i = 0; i <= (13 - count); i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine(p.amount + "|");
+                        }
+                    }
+                    foreach (revive r in b.revives)
+                    {
+                        if (r.amount != 0)
+                        {
+                            Console.Write("|" + r.type);
+                            count = (r.type + r.amount.ToString()).Count();
+                            for (int i = 0; i <= (13 - count); i++)
+                            {
+                                Console.Write(" ");
+                            }
+                            Console.WriteLine(r.amount + "|");
+                        }
+                    }
 
-        public void beginGame()     //Begin game met prof. Oak
+                    Console.WriteLine("0--------------0");
+                    break;
+                default:
+                    Console.WriteLine("Unknow command, please type '/help' for a list of commands.");
+                    break;
+            }
+        }                                      //Alle invoerbare commands
+
+        public void beginGame()
         {
             WriteLine("[???] Hello, there!");
             WriteLine("      Glad to meet you!");
@@ -360,7 +443,7 @@ namespace Pokémon
                     }
                 }
             }
-            WriteLine("[Oak] Before you go you will need a Pokémon of your own.");
+            WriteLine("[Oak] First you will need a Pokémon of your own.");
             Console.ReadLine();
             Console.Clear();
             WriteLine("[Oak] Since you don't have a Pokémon yet I will give you one.");
@@ -406,16 +489,16 @@ namespace Pokémon
                         switch (choice)
                         {
                             case "bulbasaur":
-                                _player.team.Add(getPokemon("Bulbasaur", _player.level));
-                                WriteLine("      Bulbasaur has been added to your Pokémon team!");
+                                _player.team.Add(generatePokemon("Bulbasaur", _player.level));
+                                WriteLine("Bulbasaur has been added to your Pokémon team!");
                                 break;
                             case "charmander":
-                                _player.team.Add(getPokemon("Charmander", _player.level));
-                                WriteLine("      Charmander has been added to your Pokémon team!");
+                                _player.team.Add(generatePokemon("Charmander", _player.level));
+                                WriteLine("Charmander has been added to your Pokémon team!");
                                 break;
                             case "squirtle":
-                                _player.team.Add(getPokemon("Squirtle", _player.level));
-                                WriteLine("      Squirtle has been added to your Pokémon team!");
+                                _player.team.Add(generatePokemon("Squirtle", _player.level));
+                                WriteLine("Squirtle has been added to your Pokémon team!");
                                 break;
                         }
                         Console.ReadLine();
@@ -427,44 +510,56 @@ namespace Pokémon
                 }
             }
             invoer = "";
-            WriteLine("[Oak] This is your rival, right?");
+            /*WriteLine("[Oak] This is your rival, right?");
+              Console.ReadLine();
+              Console.Clear();
+              while (invoer == "")
+              {
+                  WriteLine("[Oak] What was his name again?");
+                  invoer = Console.ReadLine();
+                  Console.Clear();
+                  while (invoer != "" && invoer != "yes")
+                  {
+                      _rival.name = invoer;
+                      WriteLine("[Oak] So his name is " + _rival.name + "?");
+                      WriteLine("");
+                      while (invoer != "yes" && invoer != "no")
+                      {
+                          WriteLine("      Enter 'yes' or 'no'");
+                          invoer = Console.ReadLine();
+                      }
+                      Console.Clear();
+                      switch (invoer)
+                      {
+                          case "yes":
+                              WriteLine("[Oak] I remember it now!");
+                              WriteLine("      His name is " + _rival.name + "!");
+                              Console.ReadLine();
+                              Console.Clear();
+                              break;
+                          case "no":
+                              invoer = "";
+                              break;
+                          default:
+                              invoer = "";
+                              break;
+                      }
+                  }
+              }
+              invoer = "";*/
+            WriteLine("[Oak] Before you go you should have some items...");
+            WriteLine("      Here take this backpack, there are also some items in there for you.");
             Console.ReadLine();
             Console.Clear();
-            while (invoer == "")
-            {
-                WriteLine("[Oak] What was his name again?");
-                invoer = Console.ReadLine();
-                Console.Clear();
-                while (invoer != "" && invoer != "yes")
-                {
-                    _rival.name = invoer;
-                    WriteLine("[Oak] So his name is " + _rival.name + "?");
-                    WriteLine("");
-                    while (invoer != "yes" && invoer != "no")
-                    {
-                        WriteLine("      Enter 'yes' or 'no'");
-                        invoer = Console.ReadLine();
-                    }
-                    Console.Clear();
-                    switch (invoer)
-                    {
-                        case "yes":
-                            WriteLine("[Oak] I remember it now!");
-                            WriteLine("      His name is " + _rival.name + "!");
-                            Console.ReadLine();
-                            Console.Clear();
-                            break;
-                        case "no":
-                            invoer = "";
-                            break;
-                        default:
-                            invoer = "";
-                            break;
-                    }
-                }
-            }
-            invoer = "";
-
+            WriteLine("Received the backpack from Proffesor Oak!");
+            WriteLine("Type '/bag ![pocket]' to acces it.");
+            Console.ReadLine();
+            Console.Clear();
+            WriteLine("5 Poké balls have been added to the Pokéballs pocket [!p]");
+            Console.ReadLine();
+            WriteLine("1 potion has been added to the Medicine pocket [!m]");
+            Console.ReadLine();
+            Console.Clear();
             WriteLine("[Oak] " + _player.name + "!");
             System.Threading.Thread.Sleep(200);
             WriteLine("      Your very own Pokémon legend is about to unfold!");
@@ -474,9 +569,9 @@ namespace Pokémon
             WriteLine("      Let's go!");
             Console.ReadLine();
             Console.Clear();
-        }                                                 
+        }                                                 //Begin game met prof. Oak
 
-        public pokemon getPokemon(string _pokemon, int level)       //Generate stats voor een bepaalde pokemon
+        public pokemon generatePokemon(string _pokemon, int level)
         {
             pokemon p = new pokemon();
             p.level = (r.Next(level - 5, (level + 5) + 1)) + 5;
@@ -691,6 +786,7 @@ namespace Pokémon
                 case "Caterpie":
                     p.name = "Caterpie";
                     p.type1 = "Bug";
+                    p.baseHp = 45;
                     p.baseAttack = 30;
                     p.baseDefence = 35;
                     p.baseSpeed = 45;
@@ -704,6 +800,7 @@ namespace Pokémon
                 case "Metapod":
                     p.name = "Metapod";
                     p.type1 = "Bug";
+                    p.baseHp = 50;
                     p.baseAttack = 20;
                     p.baseDefence = 55;
                     p.baseSpeed = 30;
@@ -715,6 +812,7 @@ namespace Pokémon
                     break;
                 case "Butterfree":
                     p.name = "Butterfree";
+                    p.baseHp = 60;
                     p.type1 = "Bug";
                     p.type2 = "Flying";
                     p.baseAttack = 45;
@@ -736,6 +834,7 @@ namespace Pokémon
                     p.name = "Weedle";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 40;
                     p.baseAttack = 35;
                     p.baseDefence = 30;
                     p.baseSpeed = 50;
@@ -750,6 +849,7 @@ namespace Pokémon
                     p.name = "Kakuna";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 45;
                     p.baseAttack = 25;
                     p.baseDefence = 50;
                     p.baseSpeed = 35;
@@ -763,6 +863,7 @@ namespace Pokémon
                     p.name = "Beedrill";
                     p.type1 = "Bug";
                     p.type2 = "Poison";
+                    p.baseHp = 65;
                     p.baseAttack = 80;
                     p.baseDefence = 40;
                     p.baseSpeed = 75;
@@ -781,6 +882,7 @@ namespace Pokémon
                     p.name = "Pidgey";
                     p.type1 = "Normal";
                     p.type2 = "Flying";
+                    p.baseHp = 40;
                     p.baseAttack = 45;
                     p.baseDefence = 40;
                     p.baseSpeed = 56;
@@ -796,10 +898,87 @@ namespace Pokémon
                         new learnset { move = Mirror_Move, level = 44 }
                     };
                     break;
+                case "Pidgeotto":
+                    p.name = "Pidgeotto";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseHp = 63;
+                    p.baseAttack = 60;
+                    p.baseDefence = 55;
+                    p.baseSpeed = 71;
+                    p.baseSpecial = 50;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 21 },
+                        new learnset { move = Wing_Attack, level = 31 },
+                        new learnset { move = Agility, level = 40 },
+                        new learnset { move = Mirror_Move, level = 49 }
+                    };
+                    break;
+                case "Pigeot":
+                    p.name = "Pigeot";
+                    p.type1 = "Normal";
+                    p.type2 = "Flying";
+                    p.baseHp = 83;
+                    p.baseAttack = 80;
+                    p.baseDefence = 75;
+                    p.baseSpeed = 91;
+                    p.baseSpecial = 70;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Gust, level = 1 },
+                        new learnset { move = Sand_Attack, level = 5},
+                        new learnset { move = Quick_Attack, level = 12 },
+                        new learnset { move = Whirlwind, level = 21 },
+                        new learnset { move = Wing_Attack, level = 31 },
+                        new learnset { move = Agility, level = 44 },
+                        new learnset { move = Mirror_Move, level = 54 }
+                    };
+                    break;
+                case "Rattata":
+                    p.name = "Rattata";
+                    p.type1 = "Normal";
+                    p.baseHp = 30;
+                    p.baseAttack = 56;
+                    p.baseDefence = 35;
+                    p.baseSpeed = 72;
+                    p.baseSpecial = 25;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1},
+                        new learnset { move = Quick_Attack, level = 7 },
+                        new learnset { move = Hyper_Fang, level = 14 },
+                        new learnset { move = Focus_Energy, level = 23 },
+                        new learnset { move = Super_Fang, level = 34 },
+                    };
+                    break;
+                case "Raticate":
+                    p.name = "Raticate";
+                    p.type1 = "Normal";
+                    p.baseHp = 55;
+                    p.baseAttack = 81;
+                    p.baseDefence = 60;
+                    p.baseSpeed = 97;
+                    p.baseSpecial = 50;
+                    p.learnset = new List<learnset>
+                    {
+                        new learnset { move = Tackle, level = 1 },
+                        new learnset { move = Tail_Whip, level = 1},
+                        new learnset { move = Quick_Attack, level = 7 },
+                        new learnset { move = Hyper_Fang, level = 14 },
+                        new learnset { move = Focus_Energy, level = 27 },
+                        new learnset { move = Super_Fang, level = 41 },
+                    };
+                    break;
                 default:
                     p.name = "Pidgey";
                     p.type1 = "Normal";
                     p.type2 = "Flying";
+                    p.baseHp = 40;
                     p.baseAttack = 45;
                     p.baseDefence = 40;
                     p.baseSpeed = 56;
@@ -838,9 +1017,9 @@ namespace Pokémon
             }
             p.faint = false;
             return p;
-        }                   
+        }              //Generate stats voor een bepaalde pokemon
 
-        public trainer getTrainer()     //Random Trainer
+        public trainer getTrainer()
         {
             int count;
             trainer t = new trainer();
@@ -874,21 +1053,21 @@ namespace Pokémon
             {
                 count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
                 string pokemon = TestPokemon[count];
-                pokemon a = getPokemon(pokemon, _player.level);
+                pokemon a = generatePokemon(pokemon, _player.level);
                 t.team.Add(a);
             }
             return t;
-        }                                             
+        }                                             //Random Trainer
 
         public pokemon getPokemon(int l)    //Random Pokemon
         {
             int count = r.Next(0, TestPokemon.Count());     //Alleen voor testen, functie randomPokemon() is de uiteindelijke code
             string pokemon = TestPokemon[count];
-            pokemon e = getPokemon(pokemon, _player.level);
+            pokemon e = generatePokemon(pokemon, _player.level);
             return e;
         }                                        
 
-        public string randomPokemon(int l)      //Random Pokemon string, aan de hand van player/trainerlevel
+        public string randomPokemon(int l)
         {
             string p = "";
             int percentage = r.Next(0, 101);
@@ -952,7 +1131,7 @@ namespace Pokémon
                 }
             }
             return p;
-        }                                      
+        }                                      //Random Pokemon string, aan de hand van player/trainerlevel
 
         public void battle(trainer t, pokemon e)
         {
